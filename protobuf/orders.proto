@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = "order-management/common/orders";
+
+service OrderService{
+    rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse){}
+    rpc GetOrders(GetOrdersRequest) returns (GetOrdersResponse){}
+}
+
+message Order {
+    int32 OrderId = 1;
+    int32 CustomerId = 2;
+    int32 ProductId = 3;
+    int32 Quantity = 4;
+}
+
+message CreateOrderRequest{
+    int32 productId = 1;
+    int32 customerId = 2;
+    int32 quantity = 3;
+}
+
+message CreateOrderResponse{
+    string status = 1;
+}
+
+message GetOrdersRequest{
+    int32 customerId = 1;
+}
+
+message GetOrdersResponse {
+    repeated Order orders = 1;
+}
